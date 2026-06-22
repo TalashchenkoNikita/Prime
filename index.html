@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Запис на прийом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-cross">✚</span>
+        <div>
+          <div class="logo-name">Лікарська практика</div>
+          <div class="logo-sub">Іванов Олексій Миколайович</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#booking">Записатися</a>
+        <a href="#about">Про лікаря</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Терапевт · Кардіолог</p>
+      <h1 class="hero-title">Турбота<br>про ваше<br>здоров'я</h1>
+      <p class="hero-desc">Запишіться на консультацію онлайн — без черг і очікування. Прийом у зручний для вас час.</p>
+      <a href="#booking" class="btn-primary">Записатися на прийом</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">Найближчий запис</div>
+        <div class="hero-card-time">Сьогодні, 14:00</div>
+        <div class="hero-card-status">✓ Місця є</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-eyebrow">Про лікаря</p>
+          <h2 class="section-title">Іванов Олексій Миколайович</h2>
+          <p>Лікар вищої категорії з досвідом роботи понад 15 років. Спеціалізується на діагностиці та лікуванні захворювань серцево-судинної системи та терапевтичних патологій.</p>
+          <ul class="about-list">
+            <li>Кандидат медичних наук</li>
+            <li>Член Асоціації кардіологів України</li>
+            <li>Понад 5 000 успішних консультацій</li>
+          </ul>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">років практики</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5000+</div>
+            <div class="stat-label">пацієнтів</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">спеціалізації</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <div class="container">
+      <p class="section-eyebrow">Онлайн-запис</p>
+      <h2 class="section-title">Оберіть зручний час</h2>
+
+      <div class="booking-layout">
+
+        <!-- CALENDAR -->
+        <div class="booking-left">
+          <div class="calendar-card">
+            <div class="calendar-header">
+              <button class="cal-nav" id="prevMonth">&#8592;</button>
+              <span class="cal-month-label" id="monthLabel"></span>
+              <button class="cal-nav" id="nextMonth">&#8594;</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Нд</span>
+            </div>
+            <div class="calendar-days" id="calendarDays"></div>
+          </div>
+
+          <div class="timeslots-card" id="timeslotsSection" style="display:none;">
+            <div class="timeslots-label">Вільний час <span id="selectedDateLabel"></span></div>
+            <div class="timeslots-grid" id="timeslotsGrid"></div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="booking-right">
+          <form class="booking-form" id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+            <div class="selected-summary" id="selectedSummary" style="display:none;">
+              <span class="summary-icon">📅</span>
+              <span id="summaryText"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Ваше ім'я та по батькові</label>
+              <input type="text" id="name" name="name" placeholder="Іваненко Марія Петрівна" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Номер телефону</label>
+              <input type="tel" id="phone" name="phone" placeholder="+380 50 123 45 67" required />
+            </div>
+
+            <div class="form-group">
+              <label for="reason">Причина звернення <span class="optional">(необов'язково)</span></label>
+              <textarea id="reason" name="reason" rows="3" placeholder="Коротко опишіть скаргу або мету візиту"></textarea>
+            </div>
+
+            <input type="hidden" name="appointment_date" id="hiddenDate" />
+            <input type="hidden" name="appointment_time" id="hiddenTime" />
+
+            <button type="submit" class="btn-submit" id="submitBtn" disabled>
+              Записатися на прийом
+            </button>
+
+            <p class="form-note">Після відправки ми зателефонуємо для підтвердження запису</p>
+          </form>
+
+          <div class="success-message" id="successMessage" style="display:none;">
+            <div class="success-icon">✓</div>
+            <h3>Заявку прийнято!</h3>
+            <p>Ми зв'яжемося з вами найближчим часом для підтвердження запису.</p>
+            <button class="btn-primary" onclick="resetForm()">Записати ще раз</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <div class="contacts-grid">
+        <div>
+          <p class="section-eyebrow">Контакти</p>
+          <h2 class="section-title">Як нас знайти</h2>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <div class="contact-label">Адреса</div>
+              <div>м. Кропивницький, вул. Велика Перспективна, 14, каб. 5</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div>
+              <div class="contact-label">Телефон</div>
+              <div><a href="tel:+380501234567">+380 50 123 45 67</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <div class="contact-label">Години прийому</div>
+              <div>Пн–Пт: 9:00 – 18:00<br>Сб: 9:00 – 13:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="contacts-cta">
+          <p>Маєте запитання?</p>
+          <a href="tel:+380501234567" class="btn-primary">Зателефонувати</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Лікарська практика Іванова О.М. Усі права захищено.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
