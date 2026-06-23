@@ -92,7 +92,9 @@ input, textarea { font-family: inherit; }
   max-width: 420px; margin-bottom: 36px; line-height: 1.7;
 }
 .btn-primary {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  max-width: 350px;
   background: var(--teal); color: var(--white);
   padding: 14px 32px; border-radius: 8px;
   font-size: 15px; font-weight: 500;
